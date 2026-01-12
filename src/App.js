@@ -32,14 +32,12 @@ import {
 } from "lucide-react";
 
 // ==========================================
-// 🌍 ULTIMATE DATA LAYER (Updated with your Details)
+// 🌍 ULTIMATE DATA LAYER (Updated with your Links)
 // ==========================================
 const TRANSLATIONS = {
   en: {
     role: "Aspiring Nurse & Caregiver",
     tagline: "Precision with Heart.",
-    subTagline:
-      "GPA 5.00 graduate with a Scout's discipline. Committed to excellence in Germany's healthcare sector.",
     whyHire: "Why I am the Ideal Candidate",
     skills: "Competencies",
     journal: "My Journal",
@@ -50,8 +48,6 @@ const TRANSLATIONS = {
   de: {
     role: "Angehende Pflegefachkraft",
     tagline: "Präzision mit Herz.",
-    subTagline:
-      "GPA 5,00 Absolvent mit Pfadfinder-Disziplin. Verpflichtet zu exzellenter Gesundheitsfürsorge in Deutschland.",
     whyHire: "Warum ich?",
     skills: "Kompetenzen",
     journal: "Mein Journal",
@@ -144,7 +140,6 @@ const App = () => {
         isDark ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"
       } flex items-center justify-center p-4 relative overflow-hidden`}
     >
-      {/* 3D Background */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
         <motion.div
           animate={{ rotate: 360 }}
@@ -158,7 +153,6 @@ const App = () => {
         />
       </div>
 
-      {/* Controls */}
       <div className="fixed top-8 right-8 z-50 flex gap-4">
         <button
           onClick={() => setLang(lang === "en" ? "de" : "en")}
@@ -185,7 +179,6 @@ const App = () => {
             : "bg-white/50 border-white/60"
         }`}
       >
-        {/* Header */}
         <header className="pt-10 flex flex-col items-center shrink-0">
           <motion.h2
             whileHover={{ letterSpacing: "0.1em" }}
@@ -219,7 +212,6 @@ const App = () => {
           </div>
         </header>
 
-        {/* Main Content Area */}
         <main className="flex-grow p-8 md:p-12 overflow-y-auto custom-scrollbar">
           <AnimatePresence mode="wait">
             {activeTab === "home" && <HomeView key="home" t={t} />}
@@ -251,10 +243,6 @@ const App = () => {
   );
 };
 
-// ==========================================
-// 🏠 SUB-COMPONENTS
-// ==========================================
-
 const HomeView = ({ t }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -278,9 +266,6 @@ const HomeView = ({ t }) => (
       <h1 className="text-5xl md:text-7xl font-black leading-none">
         {t.tagline}
       </h1>
-      <p className="text-base md:text-lg opacity-60 font-medium leading-relaxed max-w-lg mx-auto">
-        {t.subTagline}
-      </p>
     </div>
   </motion.div>
 );
@@ -429,7 +414,6 @@ const ContactView = ({ t, isDark }) => (
       </div>
       <h2 className="text-3xl font-black">{t.contact}</h2>
     </div>
-
     <div className="flex justify-center gap-6 mb-12">
       <motion.a
         whileHover={{ y: -5 }}
@@ -463,10 +447,8 @@ const ContactView = ({ t, isDark }) => (
         <Youtube size={24} />
       </motion.a>
     </div>
-
-    {/* Real Formspree Integrated Form */}
     <form
-      action="https://formspree.io/f/mnnjzqra"
+      action="https://formspree.io/f/xreeglpw"
       method="POST"
       className="space-y-4"
     >
