@@ -23,6 +23,8 @@ import {
   Moon,
   Sun,
   Languages,
+  Award,
+  CheckCircle,
 } from "lucide-react";
 
 // ==========================================
@@ -30,26 +32,26 @@ import {
 // ==========================================
 const TRANSLATIONS = {
   en: {
-    role: "Aspiring Health Professional",
-    tagline: "Medical Precision meets Human Empathy.",
+    role: "Health Professional Candidate",
+    tagline: "Bridging Clinical Excellence with Compassionate Care.",
     subTagline:
-      "Bridging the gap between disciplined academic study and compassionate healthcare service.",
-    mission: "Current Mission",
-    skills: "Skills & Languages",
-    contact: "Let's Connect",
-    cv: "Curriculum Vitae",
-    available: "Available for Ausbildung 2026",
+      "A results-driven academic graduate and dedicated linguist committed to advancing the German healthcare sector through medical precision.",
+    whyHire: "Why Consider Me?",
+    milestones: "Professional Milestones",
+    skills: "Competencies & Languages",
+    contact: "Contact Me",
+    available: "Ready for Ausbildung 2026",
     nav: ["Profile", "Portfolio", "Journal", "Contact"],
   },
   de: {
-    role: "Angehender Gesundheitsexperte",
-    tagline: "Medizinische Präzision trifft auf menschliche Empathie.",
+    role: "Angehende Pflegefachkraft",
+    tagline: "Klinische Exzellenz trifft auf menschliche Empathie.",
     subTagline:
-      "Die Lücke zwischen diszipliniertem akademischem Studium und mitfühlender Gesundheitsversorgung schließen.",
-    mission: "Aktuelle Mission",
-    skills: "Fähigkeiten & Sprachen",
-    contact: "Lass uns সংযোগ (Connect)",
-    cv: "Lebenslauf",
+      "Ein zielorientierter akademischer Absolvent, der sich durch medizinische Präzision für den deutschen Gesundheitssektor einsetzt.",
+    whyHire: "Warum ich?",
+    milestones: "Beruflicher Werdegang",
+    skills: "Kompetenzen & Sprachen",
+    contact: "Kontaktieren Sie mich",
     available: "Bereit für Ausbildung 2026",
     nav: ["Profil", "Portfolio", "Journal", "Kontakt"],
   },
@@ -59,18 +61,38 @@ const USER_DATA = {
   profile: {
     name: "Sifat Ullah",
     location: "Dhaka, Bangladesh",
-    avatarUrl: "/me.png", // নিশ্চিত করুন এই নামে ছবি আপলোড করা আছে
-    linkedin: "linkedin.com/in/sifatullah",
+    avatarUrl: "/me.png",
     email: "sifat@example.com",
+    linkedin: "linkedin.com/in/sifatullah",
   },
-  status: {
-    text: "Intensive German B1 Certification",
-    progress: 65,
-  },
+  professionalPoints: [
+    "Graduated with Distinction in Alim Examinations (Strong ethical foundation).",
+    "Targeting Goethe-Zertifikat B1 with intensive daily 10-hour immersion.",
+    "Proven empathy through consistent community and social service.",
+    "Exceptional adaptability to international standards and medical protocols.",
+  ],
+  experience: [
+    {
+      year: "2024 - Present",
+      role: "Intensive German Language Student",
+      org: "Medical German Immersion Program",
+      desc: "Focusing on healthcare terminology, patient communication, and professional ethics in a German context.",
+    },
+    {
+      year: "2018 - 2022",
+      role: "Alim Honors Graduate",
+      org: "Islamic Studies & Ethics Institute",
+      desc: "Developed high-level discipline, memorization skills, and a deep sense of social responsibility.",
+    },
+  ],
+  skills: [
+    { name: "German (Deutsch)", level: "B1 (In Progress)", percent: 65 },
+    { name: "English", level: "C1 Advanced", percent: 90 },
+  ],
 };
 
 // ==========================================
-// 🎨 UI ENGINE COMPONENTS
+// 🎨 UI COMPONENTS
 // ==========================================
 
 const AuroraBackground = ({ isDark }) => (
@@ -80,16 +102,16 @@ const AuroraBackground = ({ isDark }) => (
     }`}
   >
     <motion.div
-      animate={{ scale: [1, 1.2, 1], x: [0, 50, 0], y: [0, 30, 0] }}
+      animate={{ scale: [1, 1.2, 1], x: [0, 50, 0] }}
       transition={{ duration: 20, repeat: Infinity }}
-      className={`absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full blur-[120px] mix-blend-screen opacity-30 ${
+      className={`absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full blur-[120px] opacity-20 ${
         isDark ? "bg-teal-900" : "bg-teal-200"
       }`}
     />
     <motion.div
-      animate={{ scale: [1, 1.1, 1], x: [0, -30, 0], y: [0, 50, 0] }}
+      animate={{ scale: [1, 1.1, 1], x: [0, -30, 0] }}
       transition={{ duration: 25, repeat: Infinity, delay: 2 }}
-      className={`absolute top-[20%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[100px] mix-blend-screen opacity-30 ${
+      className={`absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[100px] opacity-20 ${
         isDark ? "bg-blue-900" : "bg-blue-200"
       }`}
     />
@@ -114,16 +136,13 @@ const App = () => {
     >
       <AuroraBackground isDark={isDark} />
 
-      {/* Control Buttons: Theme & Language */}
+      {/* Controls */}
       <div className="fixed top-6 right-6 z-50 flex gap-3">
         <button
           onClick={() => setLang(lang === "en" ? "de" : "en")}
           className="p-3 bg-white/20 backdrop-blur-md rounded-full border border-white/30 shadow-lg hover:scale-110 transition-transform"
         >
-          <Languages
-            size={20}
-            className={isDark ? "text-teal-400" : "text-teal-600"}
-          />
+          <Languages size={20} className="text-teal-500" />
         </button>
         <button
           onClick={() => setIsDark(!isDark)}
@@ -144,7 +163,6 @@ const App = () => {
             : "bg-white/60 border-white/50"
         }`}
       >
-        {/* Header & Nav */}
         <header className="pt-10 px-6 flex flex-col items-center">
           <h2 className="text-2xl font-black tracking-tighter mb-6">
             {USER_DATA.profile.name}
@@ -162,7 +180,7 @@ const App = () => {
                 {activeTab === id && (
                   <motion.div
                     layoutId="nav"
-                    className="absolute inset-0 bg-teal-500 rounded-full shadow-lg"
+                    className="absolute inset-0 bg-teal-500 rounded-full"
                     transition={{ type: "spring", bounce: 0.2 }}
                   />
                 )}
@@ -172,7 +190,7 @@ const App = () => {
           </nav>
         </header>
 
-        <main className="flex-grow p-6 overflow-hidden">
+        <main className="flex-grow p-6 overflow-y-auto custom-scrollbar">
           <AnimatePresence mode="wait">
             {activeTab === "home" && <HomeView key="home" t={t} />}
             {activeTab === "portfolio" && (
@@ -193,7 +211,7 @@ const App = () => {
 };
 
 // ==========================================
-// 🏠 SUB-VIEWS (Home, Portfolio, Contact)
+// 🏠 SUB-VIEWS
 // ==========================================
 
 const HomeView = ({ t }) => {
@@ -217,12 +235,6 @@ const HomeView = ({ t }) => {
             className="w-full h-full object-cover scale-110"
           />
         </div>
-        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-white dark:bg-slate-800 px-4 py-1.5 rounded-full shadow-xl border border-teal-500/20 flex items-center gap-2">
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-ping" />
-          <span className="text-[10px] font-black uppercase text-slate-500 tracking-tighter">
-            {t.available}
-          </span>
-        </div>
       </motion.div>
 
       <motion.div style={{ y: yText }} className="max-w-2xl space-y-4">
@@ -244,61 +256,72 @@ const PortfolioView = ({ t, isDark }) => (
   <motion.div
     initial={{ y: 20, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
-    className="space-y-8"
+    className="space-y-12 py-4"
   >
-    <div className="flex justify-between items-center border-b border-white/10 pb-4">
-      <h2 className="text-2xl font-black">{t.cv}</h2>
-      <button className="flex items-center gap-2 text-xs font-bold bg-teal-500 text-white px-4 py-2 rounded-lg">
-        <Download size={14} /> PDF
-      </button>
+    {/* Digital CV Section: Why Hire Me */}
+    <div
+      className={`p-8 rounded-[32px] border ${
+        isDark
+          ? "bg-teal-500/5 border-teal-500/10"
+          : "bg-teal-50 border-teal-100"
+      }`}
+    >
+      <h3 className="text-xl font-black mb-6 flex items-center gap-3">
+        <Award className="text-teal-500" /> {t.whyHire}
+      </h3>
+      <div className="grid md:grid-cols-2 gap-4">
+        {USER_DATA.professionalPoints.map((point, i) => (
+          <div key={i} className="flex gap-3 text-sm font-medium">
+            <CheckCircle size={18} className="text-teal-500 shrink-0" />
+            <span>{point}</span>
+          </div>
+        ))}
+      </div>
     </div>
 
-    <div className="grid md:grid-cols-2 gap-8">
-      <div
-        className={`p-6 rounded-3xl border ${
-          isDark ? "bg-white/5 border-white/5" : "bg-black/5 border-black/5"
-        }`}
-      >
-        <h3 className="text-sm font-bold text-teal-500 uppercase mb-6 flex items-center gap-2">
-          <Globe size={16} /> {t.skills}
+    <div className="grid md:grid-cols-2 gap-10">
+      <div className="space-y-6">
+        <h3 className="text-sm font-black uppercase text-slate-400 flex items-center gap-2">
+          <Languages size={16} /> {t.skills}
         </h3>
-        <div className="space-y-6">
-          <SkillBar label="German (Deutsch)" level="B1" progress={65} />
-          <SkillBar label="English" level="Fluent" progress={90} />
-        </div>
-      </div>
-      <div className="space-y-4">
-        <div className="p-6 bg-teal-500/10 rounded-3xl border border-teal-500/20">
-          <h4 className="font-bold text-teal-600 mb-2">{t.mission}</h4>
-          <p className="text-sm font-medium">{USER_DATA.status.text}</p>
-          <div className="mt-4 h-2 bg-slate-200 rounded-full overflow-hidden">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "65%" }}
-              className="h-full bg-teal-500"
-            />
+        {USER_DATA.skills.map((skill, i) => (
+          <div key={i} className="space-y-2">
+            <div className="flex justify-between text-xs font-bold">
+              <span>{skill.name}</span>
+              <span>{skill.level}</span>
+            </div>
+            <div className="h-1.5 bg-black/5 dark:bg-white/10 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${skill.percent}%` }}
+                className="h-full bg-teal-500"
+                transition={{ duration: 1.5 }}
+              />
+            </div>
           </div>
+        ))}
+      </div>
+
+      <div className="space-y-6">
+        <h3 className="text-sm font-black uppercase text-slate-400 flex items-center gap-2">
+          <BookOpen size={16} /> {t.milestones}
+        </h3>
+        <div className="space-y-6 relative border-l-2 border-slate-200 dark:border-slate-800 ml-2 pl-6">
+          {USER_DATA.experience.map((exp, i) => (
+            <div key={i} className="relative">
+              <div className="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-teal-500" />
+              <span className="text-[10px] font-black text-teal-500">
+                {exp.year}
+              </span>
+              <h4 className="font-bold text-sm">{exp.role}</h4>
+              <p className="text-[11px] opacity-60 font-bold mb-1">{exp.org}</p>
+              <p className="text-xs opacity-80">{exp.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   </motion.div>
-);
-
-const SkillBar = ({ label, level, progress }) => (
-  <div className="space-y-2">
-    <div className="flex justify-between text-xs font-bold opacity-70">
-      <span>{label}</span>
-      <span>{level}</span>
-    </div>
-    <div className="h-1.5 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
-      <motion.div
-        initial={{ width: 0 }}
-        animate={{ width: `${progress}%` }}
-        className="h-full bg-teal-500 shadow-[0_0_10px_teal]"
-        transition={{ duration: 1.5 }}
-      />
-    </div>
-  </div>
 );
 
 const ContactView = ({ t, isDark }) => (
@@ -307,8 +330,8 @@ const ContactView = ({ t, isDark }) => (
     animate={{ opacity: 1 }}
     className="max-w-md mx-auto py-10"
   >
-    <div className="text-center space-y-4 mb-8">
-      <div className="w-16 h-16 bg-teal-500 text-white rounded-3xl flex items-center justify-center mx-auto rotate-12 shadow-xl shadow-teal-500/20">
+    <div className="text-center mb-8">
+      <div className="w-16 h-16 bg-teal-500 text-white rounded-2xl flex items-center justify-center mx-auto mb-4 rotate-12 shadow-xl">
         <Mail size={28} />
       </div>
       <h2 className="text-3xl font-black">{t.contact}</h2>
@@ -335,7 +358,7 @@ const ContactView = ({ t, isDark }) => (
           isDark ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"
         }`}
       />
-      <button className="w-full bg-teal-500 text-white font-black py-4 rounded-2xl shadow-xl shadow-teal-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+      <button className="w-full bg-teal-500 text-white font-black py-4 rounded-2xl shadow-xl hover:scale-[1.02] transition-all">
         Send Message
       </button>
     </form>
