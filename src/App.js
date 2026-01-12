@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import {
   Stethoscope,
   BookOpen,
@@ -251,70 +256,59 @@ const NavPill = ({ activeTab, setActiveTab }) => {
 // 🚀 VIEW COMPONENTS
 // ==========================================
 // VIEW: HOME
-const HomeView = () => (
-  <motion.div
-    initial={{ opacity: 0, y: 10 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -10 }}
-    className="space-y-12 py-8 text-center"
-  >
-    {/* প্রোফাইল ইমেজ সেকশন */}
-    <div className="relative inline-block group cursor-pointer">
-      <div className="absolute inset-0 bg-teal-400 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-      <div className="relative w-32 h-32 mx-auto bg-gradient-to-br from-slate-50 to-white rounded-full border-4 border-white shadow-xl flex items-center justify-center overflow-hidden">
-        {USER_DATA.profile.avatarUrl ? (
+const HomeView = () => {
+  // স্ক্রল পজিশন ট্র্যাক করার জন্য
+  const { scrollY } = useScroll();
+
+  // প্যারালাক্স লজিক: স্ক্রল করলে ছবি এবং টেক্সট আলাদা গতিতে নড়বে
+  const yText = useTransform(scrollY, [0, 500], [0, -80]);
+  const yImage = useTransform(scrollY, [0, 500], [0, 60]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0.5]);
+
+  return (
+    <div className="relative min-h-[85vh] flex flex-col items-center justify-center gap-10 py-16 px-6 overflow-hidden">
+      {/* আপনার প্রোফাইল ছবি (প্যারালাক্স ইফেক্ট সহ) */}
+      <motion.div
+        style={{ y: yImage, opacity: opacity }}
+        className="relative z-0"
+      >
+        {/* ছবির পেছনের হালকা গ্লো (Glow) */}
+        <div className="absolute inset-0 bg-teal-400 rounded-full blur-3xl opacity-20 animate-pulse" />
+
+        {/* মেইন প্রোফাইল ছবি */}
+        <div className="relative w-48 h-48 md:w-64 md:h-64 mx-auto rounded-full border-8 border-white shadow-2xl overflow-hidden">
           <img
             src={USER_DATA.profile.avatarUrl}
             alt={USER_DATA.profile.name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover scale-110"
           />
-        ) : (
-          <span className="text-4xl font-bold text-slate-300 group-hover:text-teal-500 transition-colors">
-            {USER_DATA.profile.avatarInitial}
+        </div>
+
+        {/* ছোট ফ্লোটিং ব্যাজ */}
+        <motion.div
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 3, repeat: Infinity }}
+          className="absolute -bottom-4 -right-2 bg-white px-4 py-2 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-2"
+        >
+          <div className="h-2 w-2 bg-green-500 rounded-full animate-ping" />
+          <span className="text-[10px] font-black text-slate-700 uppercase">
+            Live Now
           </span>
-        )}
-      </div>
-      <div className="absolute -bottom-2 -right-4 bg-white px-3 py-1 rounded-full shadow-lg border border-slate-100 flex items-center gap-1.5 animate-bounce-slow">
-        <Sparkles size={12} className="text-yellow-500" />
-        <span className="text-[10px] font-bold text-slate-600 uppercase tracking-wide">
-          Open to Work
-        </span>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
 
-    {/* টেক্সট সেকশন (কালার ফিক্স করা হয়েছে) */}
-    <div className="space-y-4 max-w-2xl mx-auto px-4">
-      <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
-        {USER_DATA.profile.tagline}
-      </h1>
-      <p className="text-lg text-slate-500 leading-relaxed font-medium">
-        {USER_DATA.profile.subTagline}
-      </p>
+      {/* টেক্সট সেকশন (ছবির বিপরীতে প্যারালাক্স হবে) */}
+      <motion.div style={{ y: yText }} className="text-center space-y-4 z-10">
+        <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-tight">
+          {USER_DATA.profile.tagline}
+        </h1>
+        <p className="text-lg text-slate-500 font-medium max-w-xl mx-auto">
+          {USER_DATA.profile.subTagline}
+        </p>
+      </motion.div>
     </div>
-
-    {/* স্ট্যাটাস কার্ড */}
-    <div className="flex justify-center gap-4">
-      <div className="bg-white/60 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/50 shadow-sm flex items-center gap-4 max-w-sm mx-auto hover:scale-105 transition-transform">
-        <div className="p-2 bg-teal-100 text-teal-600 rounded-lg">
-          <Globe size={20} />
-        </div>
-        <div className="text-left">
-          <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">
-            {USER_DATA.status.label}
-          </p>
-          <p className="text-sm font-bold text-slate-800">
-            {USER_DATA.status.text}
-          </p>
-        </div>
-        <div className="ml-auto">
-          <div className="h-10 w-10 rounded-full border-4 border-slate-100 flex items-center justify-center text-xs font-bold text-teal-600">
-            {USER_DATA.status.progress}%
-          </div>
-        </div>
-      </div>
-    </div>
-  </motion.div>
-);
+  );
+};
 
 // VIEW: PORTFOLIO (CV)
 const PortfolioView = () => (
