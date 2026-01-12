@@ -250,9 +250,7 @@ const NavPill = ({ activeTab, setActiveTab }) => {
 // ==========================================
 // 🚀 VIEW COMPONENTS
 // ==========================================
-
 // VIEW: HOME
-// VIEW: HOME (১৮০ নম্বর লাইনে এটি রিপ্লেস করুন)
 const HomeView = () => (
   <motion.div
     initial={{ opacity: 0, y: 10 }}
@@ -260,10 +258,10 @@ const HomeView = () => (
     exit={{ opacity: 0, y: -10 }}
     className="space-y-12 py-8 text-center"
   >
+    {/* প্রোফাইল ইমেজ সেকশন */}
     <div className="relative inline-block group cursor-pointer">
       <div className="absolute inset-0 bg-teal-400 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
       <div className="relative w-32 h-32 mx-auto bg-gradient-to-br from-slate-50 to-white rounded-full border-4 border-white shadow-xl flex items-center justify-center overflow-hidden">
-        {/* লজিক: যদি ছবি থাকে তবে ছবি দেখাও, নাহলে নাম দেখাও */}
         {USER_DATA.profile.avatarUrl ? (
           <img
             src={USER_DATA.profile.avatarUrl}
@@ -284,8 +282,9 @@ const HomeView = () => (
       </div>
     </div>
 
+    {/* টেক্সট সেকশন (কালার ফিক্স করা হয়েছে) */}
     <div className="space-y-4 max-w-2xl mx-auto px-4">
-      <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-slate-600 tracking-tight leading-tight">
+      <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
         {USER_DATA.profile.tagline}
       </h1>
       <p className="text-lg text-slate-500 leading-relaxed font-medium">
@@ -293,6 +292,7 @@ const HomeView = () => (
       </p>
     </div>
 
+    {/* স্ট্যাটাস কার্ড */}
     <div className="flex justify-center gap-4">
       <div className="bg-white/60 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/50 shadow-sm flex items-center gap-4 max-w-sm mx-auto hover:scale-105 transition-transform">
         <div className="p-2 bg-teal-100 text-teal-600 rounded-lg">
