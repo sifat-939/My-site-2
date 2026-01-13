@@ -33,12 +33,13 @@ import {
 } from "lucide-react";
 
 // ==========================================
-// 🌍 DATA LAYER (Updated with YOUR IMAGE path)
+// 🌍 DATA LAYER (Updated: Focused ONLY on Ausbildung)
 // ==========================================
 const TRANSLATIONS = {
   en: {
-    role: "Nurse Aspirant | Documentary Filmmaker | Traveler",
-    tagline: "Care, Capturing & Cultivating Experiences.",
+    // Role removed as requested
+    // New Professional & Direct Tagline
+    tagline: "Committed to starting my Nursing Ausbildung in Germany.",
     whyHire: "Professional Core Values",
     skills: "Competencies",
     journal: "Stories & Reflections",
@@ -47,8 +48,9 @@ const TRANSLATIONS = {
     nav: ["Profile", "Aspirations", "Journal", "Contact"],
   },
   de: {
-    role: "Angehende Pflegefachkraft | Dokumentarfilmer",
-    tagline: "Pflege, Erfassung und Kultivierung von Erfahrungen.",
+    // Role removed as requested
+    // New Professional & Direct Tagline (German Version)
+    tagline: "Motiviert für meine Pflegeausbildung in Deutschland.",
     whyHire: "Professionelle Kernwerte",
     skills: "Kompetenzen",
     journal: "Geschichten & Reflexionen",
@@ -61,7 +63,7 @@ const TRANSLATIONS = {
 const USER_DATA = {
   profile: {
     name: "Sifat Ullah",
-    // 👇 আপনার নিজের ছবি 'public' ফোল্ডারে 'me.png' নামে রাখুন।
+    // Make sure your picture is in the 'public' folder named 'me.png'
     avatarUrl: "/me.png",
     socials: {
       gmail: "mailto:sifatullah.contact@gmail.com",
@@ -71,21 +73,22 @@ const USER_DATA = {
     },
   },
   highlights: [
+    // Removed Documentary/Travel highlights to focus on Nursing
     {
       icon: <Heart size={18} />,
       text: "Unwavering commitment to patient-centered care and empathy.",
     },
     {
-      icon: <Camera size={18} />,
-      text: "Storyteller: Capturing human emotions through documentaries.",
+      icon: <Activity size={18} />,
+      text: "Reliable team player with high resilience under medical pressure.",
     },
     {
       icon: <Globe size={18} />,
-      text: "Multilingual: Bridging communication gaps globally.",
+      text: "Multilingual: Bridging communication gaps in healthcare environments.",
     },
     {
-      icon: <Compass size={18} />,
-      text: "Adventurous Traveler: Exploring cultures and perspectives.",
+      icon: <ShieldCheck size={18} />,
+      text: "Dedicated to the highest standards of ethics and hygiene.",
     },
   ],
   education: [
@@ -124,21 +127,21 @@ const USER_DATA = {
     },
     {
       id: 2,
-      title: "Frames of Reality",
-      date: "Jan 05, 2026",
-      category: "Film",
+      title: "Bridging Cultures in Medicine",
+      date: "Dec 28, 2025",
+      category: "Language",
       content:
-        "Documentaries allow me to speak for those who often go unheard.",
-      excerpt: "How filmmaking complements my empathetic nature as a nurse...",
+        "Learning German is my bridge to professional excellence. Understanding a patient's language is the first step toward healing their spirit.",
+      excerpt: "The impact of language mastery on clinical safety...",
     },
     {
       id: 3,
-      title: "Travel: The Best Teacher",
-      date: "Dec 20, 2025",
-      category: "Travel",
+      title: "Ethics in Modern Nursing",
+      date: "Nov 15, 2025",
+      category: "Professional",
       content:
-        "Traveling across borders has taught me more about humanity than any textbook.",
-      excerpt: "Why cultural exposure is vital for international healthcare...",
+        "Discipline and ethics form the backbone of healthcare. I believe that being prepared and helpful in every situation is the hallmark of a true professional.",
+      excerpt: "Why ethical foundations matter more than technical skills...",
     },
   ],
 };
@@ -287,10 +290,11 @@ const App = () => {
 };
 
 const HomeView = ({ t, isDark }) => (
+  // UPDATE: Changed to 'justify-center' for vertical balance, with reduced padding
   <motion.div
     initial={{ opacity: 0, scale: 0.95 }}
     animate={{ opacity: 1, scale: 1 }}
-    className="h-full flex flex-col items-center justify-center text-center gap-8"
+    className="h-full flex flex-col items-center justify-center text-center gap-6 pt-4 md:pt-0"
   >
     <div className="relative">
       <div className="absolute inset-0 bg-teal-500 rounded-full blur-[100px] opacity-20" />
@@ -300,7 +304,6 @@ const HomeView = ({ t, isDark }) => (
         className="relative w-40 h-40 md:w-56 md:h-56 rounded-full border-4 border-white/20 dark:border-slate-800 shadow-2xl overflow-hidden p-1 bg-gradient-to-tr from-teal-500/20 to-blue-500/20"
       >
         <div className="w-full h-full rounded-full overflow-hidden bg-slate-800">
-          {/* এখানে আপনার ছবি দেখানো হবে */}
           <img
             src={USER_DATA.profile.avatarUrl}
             alt="Sifat Ullah"
@@ -310,14 +313,10 @@ const HomeView = ({ t, isDark }) => (
       </motion.div>
     </div>
     <div className="max-w-xl space-y-4">
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="inline-block px-4 py-1.5 rounded-full bg-teal-500/10 text-teal-500 text-[10px] font-black tracking-[0.2em] uppercase"
-      >
-        {t.role}
-      </motion.span>
-      <h1 className="text-4xl md:text-7xl font-black leading-tight tracking-tighter drop-shadow-sm">
+      {/* Role removed */}
+
+      {/* Tagline */}
+      <h1 className="text-3xl md:text-6xl font-black leading-tight tracking-tighter drop-shadow-sm">
         {t.tagline}
       </h1>
       <p className="text-sm md:text-base font-medium opacity-60 max-w-md mx-auto leading-relaxed">
@@ -544,7 +543,7 @@ const ContactView = ({ t, isDark }) => (
       <textarea
         name="message"
         required
-        placeholder="Hello Sifat, I would like to talk about..."
+        placeholder="Hello Sifat, I am interested in your profile for Ausbildung..."
         rows="3"
         className={`w-full p-4 rounded-2xl border outline-none focus:ring-2 focus:ring-teal-500/30 font-bold transition-all text-sm ${
           isDark
