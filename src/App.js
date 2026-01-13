@@ -20,13 +20,12 @@ import {
 } from "lucide-react";
 
 // ==========================================
-// 🌍 STATIC DATA (Images & Links - No Translation Needed)
+// 🌍 STATIC DATA
 // ==========================================
 const STATIC_DATA = {
   name: "Sifat Ullah",
   domain: ".online",
-  // 👇 আপনার নতুন ছবির নাম এখানে আপডেট করা হয়েছে
-  // নিশ্চিত করুন 'aa.png' ছবিটি আপনার 'public' ফোল্ডারে আছে
+  // 👇 প্রোফাইল ছবির জন্য আগের aa.png রাখা হয়েছে
   avatarUrl: "/aa.png",
   socials: {
     gmail: "mailto:sifatullah.contact@gmail.com",
@@ -36,9 +35,6 @@ const STATIC_DATA = {
   },
 };
 
-// ==========================================
-// 🗣️ TRANSLATIONS (Every Single Text is Here)
-// ==========================================
 const CONTENT = {
   en: {
     nav: ["Profile", "Aspirations", "Journal", "Contact"],
@@ -104,30 +100,28 @@ const CONTENT = {
         excerpt:
           "Redefining what it means to be a caregiver in a modern hospital...",
         content:
-          "Nursing is more than a profession; it's a commitment to human dignity. My goal is to combine technical precision with a warm, human touch to help patients recover faster.",
+          "Nursing is more than a profession; it's a commitment to human dignity.",
       },
       {
         id: 2,
         category: "Language",
         title: "Bridging Cultures",
         excerpt: "The impact of language mastery on clinical safety...",
-        content:
-          "Learning German is my bridge to professional excellence. Understanding a patient's language is the first step toward healing their spirit.",
+        content: "Learning German is my bridge to professional excellence.",
       },
       {
         id: 3,
         category: "Ethics",
         title: "Ethics in Nursing",
         excerpt: "Why ethical foundations matter more than technical skills...",
-        content:
-          "Discipline and ethics form the backbone of healthcare. I believe that being prepared and helpful in every situation is the hallmark of a true professional.",
+        content: "Discipline and ethics form the backbone of healthcare.",
       },
     ],
   },
   de: {
     nav: ["Profil", "Qualifikationen", "Journal", "Kontakt"],
     tagline: "Motiviert für den Start meiner Pflegeausbildung in Deutschland.",
-    bio: "Fokussiert auf exzellente Pflege, Patientenempathie und kulturelle Integration. Bereit für den Umzug und den sofortigen Einsatz im deutschen Gesundheitssystem.",
+    bio: "Fokussiert auf exzellente Pflege, Patientenempathie und kulturelle Integration. Bereit für den Umzug und den sofortigen Einsatz.",
     whyHire: "Professionelle Kernwerte",
     skills: "Kernkompetenzen",
     academic: "Akademischer Werdegang",
@@ -144,13 +138,9 @@ const CONTENT = {
     readMore: "Geschichte lesen",
     backBtn: "Zurück zum Journal",
     highlights: [
-      {
-        text: "Unerschütterliches Engagement für patientenzentrierte Pflege und Empathie.",
-      },
-      { text: "Zuverlässiger Teamplayer mit hoher Belastbarkeit unter Druck." },
-      {
-        text: "Mehrsprachig: Überbrückung von Kommunikationslücken im Gesundheitswesen.",
-      },
+      { text: "Unerschütterliches Engagement für patientenzentrierte Pflege." },
+      { text: "Zuverlässiger Teamplayer mit hoher Belastbarkeit." },
+      { text: "Mehrsprachig: Überbrückung von Kommunikationslücken." },
       { text: "Verpflichtet zu höchsten Ethik- und Hygienestandards." },
     ],
     education: [
@@ -169,11 +159,7 @@ const CONTENT = {
     ],
     languages: [
       { name: "Deutsch", level: "Niveau A2 (Intensives B2 Ziel)", percent: 50 },
-      {
-        name: "Englisch",
-        level: "Niveau B2 (Fließende Kommunikation)",
-        percent: 85,
-      },
+      { name: "Englisch", level: "Niveau B2", percent: 85 },
       { name: "Bengali", level: "Muttersprache", percent: 100 },
     ],
     journal: [
@@ -181,34 +167,27 @@ const CONTENT = {
         id: 1,
         category: "Medizin",
         title: "Die Philosophie der Pflege",
-        excerpt:
-          "Was es bedeutet, in einem modernen Krankenhaus Pfleger zu sein...",
-        content:
-          "Pflege ist mehr als ein Beruf; es ist eine Verpflichtung zur Menschenwürde. Mein Ziel ist es, technische Präzision mit menschlicher Wärme zu verbinden.",
+        excerpt: "Was es bedeutet, Pfleger zu sein...",
+        content: "Pflege ist mehr als ein Beruf.",
       },
       {
         id: 2,
         category: "Sprache",
         title: "Kulturen verbinden",
-        excerpt:
-          "Der Einfluss von Sprachkenntnissen auf die klinische Sicherheit...",
-        content:
-          "Deutsch zu lernen ist meine Brücke zu beruflicher Exzellenz. Die Sprache eines Patienten zu verstehen, ist der erste Schritt zur Heilung.",
+        excerpt: "Der Einfluss von Sprachkenntnissen...",
+        content: "Deutsch zu lernen ist meine Brücke.",
       },
       {
         id: 3,
         category: "Ethik",
         title: "Ethik in der Pflege",
-        excerpt:
-          "Warum ethische Grundlagen wichtiger sind als technische Fähigkeiten...",
-        content:
-          "Disziplin und Ethik bilden das Rückgrat des Gesundheitswesens. In jeder Situation vorbereitet und hilfreich zu sein, ist das Kennzeichen eines wahren Profis.",
+        excerpt: "Ethische Grundlagen...",
+        content: "Disziplin und Ethik bilden das Rückgrat.",
       },
     ],
   },
 };
 
-// Animation Constants
 const floatTransition = { type: "spring", stiffness: 400, damping: 17 };
 const hoverEffect = { y: -5, scale: 1.02 };
 const tapEffect = { scale: 0.95 };
@@ -219,9 +198,6 @@ const HIGHLIGHT_ICONS = [
   <ShieldCheck size={18} />,
 ];
 
-// ==========================================
-// 🚀 THE APPLICATION
-// ==========================================
 const App = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [isDark, setIsDark] = useState(true);
@@ -235,28 +211,26 @@ const App = () => {
         isDark ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"
       } flex items-center justify-center p-4 relative overflow-hidden`}
     >
-      {/* Background Blobs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
           animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-0 left-0 w-[600px] h-[600px] bg-teal-500/10 blur-[150px] rounded-full"
+          className="absolute top-0 left-0 w-[600px] h-[600px] bg-blue-500/10 blur-[150px] rounded-full"
         />
         <motion.div
           animate={{ x: [0, -100, 0], y: [0, -50, 0] }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-500/10 blur-[150px] rounded-full"
+          className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-cyan-500/10 blur-[150px] rounded-full"
         />
       </div>
 
-      {/* Floating Controls */}
       <div className="fixed top-6 right-6 z-50 flex gap-3">
         <motion.button
           whileHover={hoverEffect}
           whileTap={tapEffect}
           transition={floatTransition}
           onClick={() => setLang(lang === "en" ? "de" : "en")}
-          className="p-3 bg-white/10 backdrop-blur-3xl border border-white/20 rounded-2xl shadow-xl text-teal-500 font-bold"
+          className="p-3 bg-white/10 backdrop-blur-3xl border border-white/20 rounded-2xl shadow-xl text-cyan-500 font-bold"
         >
           {lang === "en" ? "DE" : "EN"}
         </motion.button>
@@ -265,7 +239,7 @@ const App = () => {
           whileTap={tapEffect}
           transition={floatTransition}
           onClick={() => setIsDark(!isDark)}
-          className="p-3 bg-white/10 backdrop-blur-3xl border border-white/20 rounded-2xl shadow-xl text-teal-500"
+          className="p-3 bg-white/10 backdrop-blur-3xl border border-white/20 rounded-2xl shadow-xl text-cyan-500"
         >
           {isDark ? <Sun size={20} /> : <Moon size={20} />}
         </motion.button>
@@ -285,10 +259,10 @@ const App = () => {
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center gap-2 mb-6"
           >
-            <Globe className="text-teal-500" size={24} />
+            <Globe className="text-cyan-500" size={24} />
             <h2 className="text-xl font-black tracking-tighter uppercase">
               {STATIC_DATA.name}
-              <span className="text-teal-500">{STATIC_DATA.domain}</span>
+              <span className="text-cyan-500">{STATIC_DATA.domain}</span>
             </h2>
           </motion.div>
           <nav className="flex bg-black/5 dark:bg-white/5 p-1 rounded-2xl border border-white/10 gap-1 mb-6">
@@ -308,7 +282,7 @@ const App = () => {
                 {activeTab === id && (
                   <motion.div
                     layoutId="nav-bg"
-                    className="absolute inset-0 bg-teal-500 rounded-xl shadow-lg"
+                    className="absolute inset-0 bg-cyan-600 rounded-xl shadow-lg"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -356,28 +330,27 @@ const App = () => {
 };
 
 // ==========================================
-// 📱 SUB-COMPONENTS
+// 📱 HOME VIEW (With Intense Blue Aura)
 // ==========================================
-
 const HomeView = ({ t, isDark }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.95 }}
     animate={{ opacity: 1, scale: 1 }}
-    className="h-full flex flex-col items-center justify-center text-center gap-6 pt-4 md:pt-0"
+    className="h-full flex flex-col items-center justify-center text-center gap-6"
   >
     <div className="relative">
-      {/* Glowing effect for transparent image */}
-      <div className="absolute inset-[-20px] bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full blur-[40px] opacity-40 animate-pulse" />
+      {/* Intense Glowing Aura - Inspired by your provided reference image */}
+      <div className="absolute inset-[-30px] bg-blue-600 rounded-full blur-[60px] opacity-50 animate-pulse" />
+      <div className="absolute inset-[-10px] bg-cyan-400 rounded-full blur-[25px] opacity-30" />
 
       <motion.div
         whileHover={{ scale: 1.05 }}
-        className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-visible flex items-center justify-center"
+        className="relative w-56 h-56 md:w-72 md:h-72 rounded-full overflow-visible flex items-center justify-center"
       >
-        {/* Thin glowing border */}
-        <div className="absolute inset-0 rounded-full border-2 border-cyan-400/30 shadow-[0_0_30px_rgba(6,182,212,0.5)]" />
+        {/* Glowing Rings */}
+        <div className="absolute inset-0 rounded-full border-2 border-cyan-400/40 shadow-[0_0_50px_rgba(37,99,235,0.6)]" />
 
-        <div className="w-full h-full rounded-full overflow-hidden relative z-10">
-          {/* Image source updated to STATIC_DATA.avatarUrl which is /aa.png */}
+        <div className="w-full h-full rounded-full overflow-hidden relative z-10 border-4 border-white/10">
           <img
             src={STATIC_DATA.avatarUrl}
             alt={STATIC_DATA.name}
@@ -387,7 +360,7 @@ const HomeView = ({ t, isDark }) => (
       </motion.div>
     </div>
     <div className="max-w-xl space-y-4 z-20">
-      <h1 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter drop-shadow-sm">
+      <h1 className="text-4xl md:text-6xl font-black leading-tight tracking-tighter drop-shadow-md text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400">
         {t.tagline}
       </h1>
       <p className="text-sm md:text-base font-medium opacity-60 max-w-md mx-auto leading-relaxed">
@@ -407,31 +380,27 @@ const PortfolioView = ({ t, isDark }) => (
       className={`p-8 rounded-[32px] border ${
         isDark
           ? "bg-white/5 border-white/5"
-          : "bg-teal-50/40 border-teal-100/50"
+          : "bg-blue-50/40 border-blue-100/50"
       }`}
     >
       <h3 className="text-lg font-black mb-6 flex items-center gap-3 tracking-tight">
-        <Sparkles className="text-teal-500" size={20} /> {t.whyHire}
+        <Sparkles className="text-cyan-500" size={20} /> {t.whyHire}
       </h3>
       <div className="grid md:grid-cols-2 gap-4">
         {t.highlights.map((point, i) => (
           <motion.div
             key={i}
             whileHover={hoverEffect}
-            transition={floatTransition}
-            className="flex gap-4 items-center p-4 bg-white/50 dark:bg-black/20 rounded-2xl border border-white/20 hover:border-teal-500/30 transition-all group"
+            className="flex gap-4 items-center p-4 bg-white/50 dark:bg-black/20 rounded-2xl border border-white/20 hover:border-cyan-500/30 group"
           >
-            <div className="p-2 bg-teal-500/10 text-teal-500 rounded-lg group-hover:bg-teal-500 group-hover:text-white transition-colors">
+            <div className="p-2 bg-cyan-500/10 text-cyan-500 rounded-lg group-hover:bg-cyan-500 group-hover:text-white transition-colors">
               {HIGHLIGHT_ICONS[i]}
             </div>
-            <span className="text-sm font-bold opacity-70 leading-snug">
-              {point.text}
-            </span>
+            <span className="text-sm font-bold opacity-70">{point.text}</span>
           </motion.div>
         ))}
       </div>
     </div>
-
     <div className="grid md:grid-cols-2 gap-10">
       <div className="space-y-6">
         <h3 className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40 flex items-center gap-2">
@@ -441,21 +410,17 @@ const PortfolioView = ({ t, isDark }) => (
           <motion.div
             key={i}
             whileHover={{ x: 5 }}
-            transition={floatTransition}
-            className="pl-6 border-l-2 border-teal-500/20 relative py-2"
+            className="pl-6 border-l-2 border-cyan-500/20 relative py-2"
           >
-            <div className="absolute -left-[5px] top-4 w-2 h-2 rounded-full bg-teal-500" />
+            <div className="absolute -left-[5px] top-4 w-2 h-2 rounded-full bg-cyan-500" />
             <h4 className="font-black text-sm">{edu.title}</h4>
-            <p className="text-xs font-bold text-teal-600 mt-1">
+            <p className="text-xs font-bold text-cyan-600 mt-1">
               {edu.result}{" "}
-              <span className="opacity-40 font-medium ml-2">
-                [{edu.year}] • {edu.org}
-              </span>
+              <span className="opacity-40 font-medium ml-2">[{edu.year}]</span>
             </p>
           </motion.div>
         ))}
       </div>
-
       <div className="space-y-6">
         <h3 className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40 flex items-center gap-2">
           <Languages size={14} /> {t.skills}
@@ -464,13 +429,13 @@ const PortfolioView = ({ t, isDark }) => (
           <div key={i} className="space-y-2">
             <div className="flex justify-between font-black text-[10px] uppercase tracking-wider">
               <span>{lang.name}</span>
-              <span className="text-teal-500">{lang.level}</span>
+              <span className="text-cyan-500">{lang.level}</span>
             </div>
             <div className="h-2 bg-black/5 dark:bg-white/5 rounded-full overflow-hidden border border-white/5">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${lang.percent}%` }}
-                className="h-full bg-gradient-to-r from-teal-500 to-blue-500"
+                className="h-full bg-gradient-to-r from-blue-600 to-cyan-400"
                 transition={{ duration: 1.5, ease: "easeOut" }}
               />
             </div>
@@ -491,25 +456,21 @@ const JournalView = ({ t, isDark, onSelect }) => (
       <motion.div
         key={post.id}
         whileHover={hoverEffect}
-        whileTap={tapEffect}
-        transition={floatTransition}
         onClick={() => onSelect(post)}
         className={`p-6 rounded-[24px] border cursor-pointer group flex flex-col gap-4 transition-all ${
           isDark
-            ? "bg-white/5 border-white/5 hover:bg-teal-500/10"
+            ? "bg-white/5 border-white/5 hover:bg-blue-500/10"
             : "bg-white border-slate-100 hover:shadow-2xl"
         }`}
       >
-        <span className="text-[9px] font-black px-2.5 py-1 bg-teal-500/10 text-teal-600 rounded-lg uppercase tracking-[0.15em] w-max">
+        <span className="text-[9px] font-black px-2.5 py-1 bg-cyan-500/10 text-cyan-600 rounded-lg uppercase tracking-[0.15em] w-max">
           {post.category}
         </span>
-        <h4 className="font-black text-lg group-hover:text-teal-500 transition-colors leading-tight">
+        <h4 className="font-black text-lg group-hover:text-cyan-500 transition-colors leading-tight">
           {post.title}
         </h4>
-        <p className="text-xs opacity-50 line-clamp-3 leading-relaxed">
-          {post.excerpt}
-        </p>
-        <div className="flex items-center gap-2 text-[10px] font-black text-teal-500 mt-auto uppercase tracking-widest pt-4">
+        <p className="text-xs opacity-50 line-clamp-3">{post.excerpt}</p>
+        <div className="flex items-center gap-2 text-[10px] font-black text-cyan-500 mt-auto uppercase tracking-widest pt-4">
           {t.readMore} <ArrowRight size={12} />
         </div>
       </motion.div>
@@ -525,16 +486,15 @@ const JournalDetail = ({ post, onBack, isDark, t }) => (
   >
     <motion.button
       whileHover={{ x: -5 }}
-      transition={floatTransition}
       onClick={onBack}
-      className="flex items-center gap-2 text-xs font-black text-teal-500 mb-8 uppercase tracking-widest"
+      className="flex items-center gap-2 text-xs font-black text-cyan-500 mb-8 uppercase tracking-widest"
     >
       <ArrowLeft size={14} /> {t.backBtn}
     </motion.button>
     <h2 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter">
       {post.title}
     </h2>
-    <div className="h-1.5 w-16 bg-teal-500 rounded-full mb-8" />
+    <div className="h-1.5 w-16 bg-cyan-500 rounded-full mb-8" />
     <p className="text-base md:text-lg leading-relaxed font-medium opacity-80">
       {post.content}
     </p>
@@ -551,7 +511,7 @@ const ContactView = ({ t, isDark }) => (
       <motion.div
         animate={{ rotate: [0, 10, -10, 0] }}
         transition={{ repeat: Infinity, duration: 5 }}
-        className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 text-white rounded-[20px] flex items-center justify-center mx-auto mb-4 shadow-xl shadow-teal-500/20"
+        className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 text-white rounded-[20px] flex items-center justify-center mx-auto mb-4 shadow-xl shadow-blue-500/20"
       >
         <Mail size={24} />
       </motion.div>
@@ -560,7 +520,6 @@ const ContactView = ({ t, isDark }) => (
         {t.contactSub}
       </p>
     </div>
-
     <div className="flex justify-center gap-4 mb-10">
       <SocialBtn
         href={STATIC_DATA.socials.gmail}
@@ -583,8 +542,6 @@ const ContactView = ({ t, isDark }) => (
         color="hover:bg-red-600"
       />
     </div>
-
-    {/* Formspree form with dynamic translations */}
     <form
       action="https://formspree.io/f/xreeglpw"
       method="POST"
@@ -595,7 +552,7 @@ const ContactView = ({ t, isDark }) => (
         type="text"
         required
         placeholder={t.form.name}
-        className={`w-full p-4 rounded-2xl border outline-none focus:ring-2 focus:ring-teal-500/30 font-bold transition-all text-sm ${
+        className={`w-full p-4 rounded-2xl border outline-none focus:ring-2 focus:ring-cyan-500/30 font-bold transition-all text-sm ${
           isDark
             ? "bg-slate-800/50 border-slate-700"
             : "bg-white border-slate-200"
@@ -606,7 +563,7 @@ const ContactView = ({ t, isDark }) => (
         type="email"
         required
         placeholder={t.form.email}
-        className={`w-full p-4 rounded-2xl border outline-none focus:ring-2 focus:ring-teal-500/30 font-bold transition-all text-sm ${
+        className={`w-full p-4 rounded-2xl border outline-none focus:ring-2 focus:ring-cyan-500/30 font-bold transition-all text-sm ${
           isDark
             ? "bg-slate-800/50 border-slate-700"
             : "bg-white border-slate-200"
@@ -617,7 +574,7 @@ const ContactView = ({ t, isDark }) => (
         required
         placeholder={t.form.message}
         rows="3"
-        className={`w-full p-4 rounded-2xl border outline-none focus:ring-2 focus:ring-teal-500/30 font-bold transition-all text-sm ${
+        className={`w-full p-4 rounded-2xl border outline-none focus:ring-2 focus:ring-cyan-500/30 font-bold transition-all text-sm ${
           isDark
             ? "bg-slate-800/50 border-slate-700"
             : "bg-white border-slate-200"
@@ -627,8 +584,7 @@ const ContactView = ({ t, isDark }) => (
         type="submit"
         whileHover={hoverEffect}
         whileTap={tapEffect}
-        transition={floatTransition}
-        className="w-full bg-teal-500 text-white font-black py-4 rounded-2xl shadow-xl shadow-teal-500/20 uppercase tracking-widest text-xs flex items-center justify-center gap-2"
+        className="w-full bg-cyan-600 text-white font-black py-4 rounded-2xl shadow-xl shadow-cyan-500/20 uppercase tracking-widest text-xs flex items-center justify-center gap-2"
       >
         {t.form.btn} <Send size={16} />
       </motion.button>
@@ -640,7 +596,6 @@ const SocialBtn = ({ href, icon, color }) => (
   <motion.a
     whileHover={hoverEffect}
     whileTap={tapEffect}
-    transition={floatTransition}
     href={href}
     target="_blank"
     rel="noreferrer"
