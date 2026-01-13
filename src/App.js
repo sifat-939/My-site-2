@@ -25,7 +25,9 @@ import {
 const STATIC_DATA = {
   name: "Sifat Ullah",
   domain: ".online",
-  avatarUrl: "/me.png", // Ensure 'me.png' is in your public folder
+  // 👇 আপনার নতুন ছবির নাম এখানে আপডেট করা হয়েছে
+  // নিশ্চিত করুন 'aa.png' ছবিটি আপনার 'public' ফোল্ডারে আছে
+  avatarUrl: "/aa.png",
   socials: {
     gmail: "mailto:sifatullah.contact@gmail.com",
     twitter: "https://twitter.com/sifatullah",
@@ -57,8 +59,6 @@ const CONTENT = {
     footer: "© 2026 Sifat Ullah. All Rights Reserved.",
     readMore: "Read Story",
     backBtn: "Back to Stories",
-
-    // Highlights Array
     highlights: [
       { text: "Unwavering commitment to patient-centered care and empathy." },
       {
@@ -69,8 +69,6 @@ const CONTENT = {
       },
       { text: "Dedicated to the highest standards of ethics and hygiene." },
     ],
-
-    // Education Array
     education: [
       {
         title: "HSC (Alim Examination)",
@@ -85,8 +83,6 @@ const CONTENT = {
         year: "2019-20",
       },
     ],
-
-    // Languages Array
     languages: [
       {
         name: "German (Deutsch)",
@@ -100,8 +96,6 @@ const CONTENT = {
       },
       { name: "Bengali", level: "Native Proficiency", percent: 100 },
     ],
-
-    // Journal Array
     journal: [
       {
         id: 1,
@@ -130,7 +124,6 @@ const CONTENT = {
       },
     ],
   },
-
   de: {
     nav: ["Profil", "Qualifikationen", "Journal", "Kontakt"],
     tagline: "Motiviert für den Start meiner Pflegeausbildung in Deutschland.",
@@ -150,8 +143,6 @@ const CONTENT = {
     footer: "© 2026 Sifat Ullah. Alle Rechte vorbehalten.",
     readMore: "Geschichte lesen",
     backBtn: "Zurück zum Journal",
-
-    // Highlights Array (German)
     highlights: [
       {
         text: "Unerschütterliches Engagement für patientenzentrierte Pflege und Empathie.",
@@ -162,8 +153,6 @@ const CONTENT = {
       },
       { text: "Verpflichtet zu höchsten Ethik- und Hygienestandards." },
     ],
-
-    // Education Array (German)
     education: [
       {
         title: "HSC (Alim Prüfung)",
@@ -178,8 +167,6 @@ const CONTENT = {
         year: "2019-20",
       },
     ],
-
-    // Languages Array (German)
     languages: [
       { name: "Deutsch", level: "Niveau A2 (Intensives B2 Ziel)", percent: 50 },
       {
@@ -189,8 +176,6 @@ const CONTENT = {
       },
       { name: "Bengali", level: "Muttersprache", percent: 100 },
     ],
-
-    // Journal Array (German)
     journal: [
       {
         id: 1,
@@ -227,8 +212,6 @@ const CONTENT = {
 const floatTransition = { type: "spring", stiffness: 400, damping: 17 };
 const hoverEffect = { y: -5, scale: 1.02 };
 const tapEffect = { scale: 0.95 };
-
-// Icons mapped for iteration
 const HIGHLIGHT_ICONS = [
   <Heart size={18} />,
   <Activity size={18} />,
@@ -239,14 +222,11 @@ const HIGHLIGHT_ICONS = [
 // ==========================================
 // 🚀 THE APPLICATION
 // ==========================================
-
 const App = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [isDark, setIsDark] = useState(true);
   const [lang, setLang] = useState("en");
   const [selectedJournal, setSelectedJournal] = useState(null);
-
-  // Get current language content
   const t = CONTENT[lang];
 
   return (
@@ -311,7 +291,6 @@ const App = () => {
               <span className="text-teal-500">{STATIC_DATA.domain}</span>
             </h2>
           </motion.div>
-
           <nav className="flex bg-black/5 dark:bg-white/5 p-1 rounded-2xl border border-white/10 gap-1 mb-6">
             {["home", "portfolio", "journal", "contact"].map((id, i) => (
               <motion.button
@@ -368,7 +347,6 @@ const App = () => {
             )}
           </AnimatePresence>
         </main>
-
         <footer className="p-6 text-center text-[10px] font-bold opacity-30 tracking-widest uppercase">
           {t.available} — {t.footer}
         </footer>
@@ -388,13 +366,18 @@ const HomeView = ({ t, isDark }) => (
     className="h-full flex flex-col items-center justify-center text-center gap-6 pt-4 md:pt-0"
   >
     <div className="relative">
-      <div className="absolute inset-0 bg-teal-500 rounded-full blur-[100px] opacity-20" />
+      {/* Glowing effect for transparent image */}
+      <div className="absolute inset-[-20px] bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full blur-[40px] opacity-40 animate-pulse" />
+
       <motion.div
-        whileHover={{ scale: 1.08, rotate: 2 }}
-        transition={floatTransition}
-        className="relative w-40 h-40 md:w-56 md:h-56 rounded-full border-4 border-white/20 dark:border-slate-800 shadow-2xl overflow-hidden p-1 bg-gradient-to-tr from-teal-500/20 to-blue-500/20"
+        whileHover={{ scale: 1.05 }}
+        className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-visible flex items-center justify-center"
       >
-        <div className="w-full h-full rounded-full overflow-hidden bg-slate-800">
+        {/* Thin glowing border */}
+        <div className="absolute inset-0 rounded-full border-2 border-cyan-400/30 shadow-[0_0_30px_rgba(6,182,212,0.5)]" />
+
+        <div className="w-full h-full rounded-full overflow-hidden relative z-10">
+          {/* Image source updated to STATIC_DATA.avatarUrl which is /aa.png */}
           <img
             src={STATIC_DATA.avatarUrl}
             alt={STATIC_DATA.name}
@@ -403,7 +386,7 @@ const HomeView = ({ t, isDark }) => (
         </div>
       </motion.div>
     </div>
-    <div className="max-w-xl space-y-4">
+    <div className="max-w-xl space-y-4 z-20">
       <h1 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter drop-shadow-sm">
         {t.tagline}
       </h1>
